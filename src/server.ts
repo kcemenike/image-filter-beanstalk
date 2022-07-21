@@ -22,7 +22,7 @@ import { nextTick } from 'process';
   //    2. call filterImageFromURL(image_url) to filter the image
   //    3. send the resulting file in the response
   //    4. deletes any files on the server on finish of the response
-  // QUERY PARAMATERS
+  // QUERY PARAMETERS
   //    image_url: URL of a publicly accessible image
   // RETURNS
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
@@ -35,7 +35,7 @@ import { nextTick } from 'process';
       if (!image_url) {
         return res.status(400).send('image url does not exist');
       }
-      const filteredImage = await filterImageFromURL(image_url);
+      const filteredImage = await filterImageFromURL(image_url as string);
       console.log(filteredImage);
       return res.status(200).sendFile(filteredImage, function () {
         deleteLocalFiles([filteredImage]);
